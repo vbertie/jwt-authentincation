@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:5012/auth_db
+    username: user
+    password: user
+
+auth:
+  server:
+    jwtSecret: secretKey
+    jwtExpiration: 86400
