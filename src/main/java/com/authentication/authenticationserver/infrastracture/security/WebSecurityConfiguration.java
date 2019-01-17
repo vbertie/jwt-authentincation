@@ -1,7 +1,7 @@
 package com.authentication.authenticationserver.infrastracture.security;
 
 import com.authentication.authenticationserver.authentication.UserDetailsServiceImpl;
-import com.authentication.authenticationserver.infrastracture.jwt.JwtAuthEntryPoint;
+import com.authentication.authenticationserver.infrastracture.jwt.JwtUnauthorizedPoint;
 import com.authentication.authenticationserver.infrastracture.jwt.JwtAuthTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(
 		prePostEnabled = true
 )
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@RequiredArgsConstructor
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
-    @Autowired
-    private JwtAuthEntryPoint unauthorizedHandler;
+    private final JwtUnauthorizedPoint unauthorizedHandler;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public JwtAuthTokenFilter authenticationJwtTokenFilter() {

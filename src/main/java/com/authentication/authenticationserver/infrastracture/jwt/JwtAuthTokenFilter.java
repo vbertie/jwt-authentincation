@@ -4,7 +4,6 @@ import com.authentication.authenticationserver.authentication.UserDetailsService
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,14 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
+@RequiredArgsConstructor
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtProvider tokenProvider;
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private final JwtProvider tokenProvider;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

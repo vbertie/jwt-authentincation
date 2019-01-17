@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Component
 @Slf4j
-public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
+public class JwtUnauthorizedPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request,
